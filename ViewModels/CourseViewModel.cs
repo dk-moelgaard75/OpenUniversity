@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using OpenUniversity.Repository;
+
 
 namespace OpenUniversity.ViewModels
 {
-    class CourseViewModel: ViewModelBase
+    class CourseViewModel : ViewModelBase
     {
         #region private fields
         private Guid _courseID;
         private string _courseName;
         private string _teacher;
+        private string _status = "N/A";
+        private Visibility _statusVisibility;
+        private BaseRepository<CourseViewModel> baseRepository;
         #endregion
         #region Properties
         public string CourseName
@@ -32,6 +38,25 @@ namespace OpenUniversity.ViewModels
             {
                 _teacher = value;
                 RaisePropertyChanged("Teacher");
+            }
+        }
+        public string Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                RaisePropertyChanged("Status");
+            }
+        }
+
+        public Visibility StatusVisibility
+        {
+            get { return _statusVisibility; }
+            set
+            {
+                _statusVisibility = value;
+                RaisePropertyChanged("StatusVisibility");
             }
         }
         private Guid CourseID
@@ -66,10 +91,17 @@ namespace OpenUniversity.ViewModels
         {
             //Create Course
             _courseID = Guid.NewGuid();
-            
+            StatusVisibility = Visibility.Visible;
 
-            
+
 
         }
         #endregion
+        public CourseViewModel()
+        {
+            StatusVisibility = Visibility.Hidden;
+            baseRepository = new BaseRepository<CourseViewModel>();
+
+        }
     }
+}

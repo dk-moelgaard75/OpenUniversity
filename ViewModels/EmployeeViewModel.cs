@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using OpenUniversity.Commands;
 using OpenUniversity.Models;
+using OpenUniversity.Repository;
 
 
 namespace OpenUniversity.ViewModels
@@ -23,8 +24,10 @@ namespace OpenUniversity.ViewModels
         private Visibility _statusVisibility;
         private ObservableCollection<EmployeeModel> _employees;
         private EmployeeModel _currentEmployee;
+        private BaseRepository<PersonModel> baseRepositoryPerson;
+        private BaseRepository<EmployeeModel> baseRepositoryEmploye;
         #endregion
-        
+
         #region Properties
         public string FirstName
         {
@@ -142,6 +145,10 @@ namespace OpenUniversity.ViewModels
             Status = "Medarbejder oprettet";
             StatusVisibility = Visibility.Visible;
             //added to local list - implement backend global list thru repository
+            PersonModel personModel = (PersonModel)employee;
+            EmployeeModel employeeModel = (EmployeeModel)employee;
+            baseRepositoryPerson.Insert(personModel);
+            baseRepositoryEmploye.Insert(employeeModel);
             Employees.Add(employee);
 
             //serialize to XML
@@ -155,6 +162,8 @@ namespace OpenUniversity.ViewModels
             _employees = new ObservableCollection<EmployeeModel>();
             //Setting default epmloyee type
             CurrentEmployeeType = "Sekretær";
+            baseRepositoryPerson = new BaseRepository<PersonModel>();
+            baseRepositoryEmploye = new BaseRepository<EmployeeModel>();
         }
     }
 }
