@@ -10,13 +10,25 @@ namespace OpenUniversity.Data
 {
     class OpenUniversityDbContext : DbContext
     {
+        //DB setup due to inheritance: https://weblogs.asp.net/manavi/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-2-table-per-type-tpt
         public OpenUniversityDbContext() : base("name=OpenUniversityDBEntities")
         {
+            
+            //Database.SetInitializer<OpenUniversityDbContext>(new OpenUniversityDbInitializer());
+            Database.SetInitializer(new OpenUniversityDbInitializer());
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PersonModel>().ToTable("Persons");
+            modelBuilder.Entity<EmployeeModel>().ToTable("Employees");
+            modelBuilder.Entity<StudentModel>().ToTable("Students");
+            modelBuilder.Entity<CourseModel>().ToTable("Courses");
 
         }
         public DbSet<CourseModel> Courses { get; set; }
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<PersonModel> Persons { get; set; }
         public DbSet<StudentModel> Students { get; set; }
+        
     }
 }

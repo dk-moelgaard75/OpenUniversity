@@ -32,6 +32,7 @@ namespace OpenUniversity.Repository
         public void Insert(T obj)
         {
             table.Add(obj);
+            _context.SaveChanges();
         }
         public void Update(T obj)
         {

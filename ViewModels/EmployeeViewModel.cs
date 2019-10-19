@@ -145,10 +145,7 @@ namespace OpenUniversity.ViewModels
             Status = "Medarbejder oprettet";
             StatusVisibility = Visibility.Visible;
             //added to local list - implement backend global list thru repository
-            PersonModel personModel = (PersonModel)employee;
-            EmployeeModel employeeModel = (EmployeeModel)employee;
-            baseRepositoryPerson.Insert(personModel);
-            baseRepositoryEmploye.Insert(employeeModel);
+            baseRepositoryEmploye.Insert(employee);
             Employees.Add(employee);
 
             //serialize to XML
@@ -158,12 +155,16 @@ namespace OpenUniversity.ViewModels
         {
             //Initially hides status label
             StatusVisibility = Visibility.Hidden;
-            //Initalizes employees
-            _employees = new ObservableCollection<EmployeeModel>();
             //Setting default epmloyee type
             CurrentEmployeeType = "Sekretær";
-            baseRepositoryPerson = new BaseRepository<PersonModel>();
             baseRepositoryEmploye = new BaseRepository<EmployeeModel>();
+            //Initalizes employees
+            _employees = new ObservableCollection<EmployeeModel>();
+            IEnumerable<EmployeeModel> list = baseRepositoryEmploye.GetAll();
+            foreach(EmployeeModel model in list)
+            {
+                _employees.Add(model);
+            }
         }
     }
 }
