@@ -7,41 +7,56 @@
         mc:Ignorable="d"
         Title="Ansat" Height="450" Width="800">
     <Grid>
-        <Label Content="Vælg" HorizontalAlignment="Left" Margin="31,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.772,1.33"/>
+        <Label Content="Vælg" HorizontalAlignment="Left" Margin="31,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.772,1.33"/>
         <ComboBox ItemsSource="{Binding Employees}"
                                 DisplayMemberPath="FullName"
                                 SelectedValuePath="PersonId"
                                 SelectedItem="{Binding CurrentEmployee}"
-            HorizontalAlignment="Left" Margin="116,56,0,0" VerticalAlignment="Top" Width="120" />
-        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="31,102,0,0" VerticalAlignment="Top"/>
-        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="31,142,0,0" VerticalAlignment="Top"/>
-        <Label Content="Alder" HorizontalAlignment="Left" Margin="31,182,0,0" VerticalAlignment="Top"/>
-        <Label Content="Type" HorizontalAlignment="Left" Margin="31,222,0,0" VerticalAlignment="Top"/>
+                                IsSynchronizedWithCurrentItem="True"
+            HorizontalAlignment="Left" Margin="136,16,0,0" VerticalAlignment="Top" Width="120" />
+        <Label Content="Fornavn" HorizontalAlignment="Left" Margin="31,52,0,0" VerticalAlignment="Top"/>
+        <Label Content="Efternavn" HorizontalAlignment="Left" Margin="31,92,0,0" VerticalAlignment="Top"/>
+        <Label Content="Alder" HorizontalAlignment="Left" Margin="31,132,0,0" VerticalAlignment="Top"/>
+        <Label Content="Type" HorizontalAlignment="Left" Margin="31,172,0,0" VerticalAlignment="Top"/>
         <TextBox 
             Text="{Binding FirstName, Mode=TwoWay}"
             KeyDown="HandleKeyDown"
-            HorizontalAlignment="Left" Height="23" Margin="116,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.525,-0.341" />
+            HorizontalAlignment="Left" Height="23" Margin="136,55,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.525,-0.341" />
         <TextBox 
             Text="{Binding LastName, Mode=TwoWay}"
             KeyDown="HandleKeyDown"
-            HorizontalAlignment="Left" Height="23" Margin="116,145,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            HorizontalAlignment="Left" Height="23" Margin="136,95,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox 
             Text="{Binding Age, Mode=TwoWay}"
             KeyDown="HandleKeyDown"
-            HorizontalAlignment="Left" Height="23" Margin="116,185,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+            HorizontalAlignment="Left" Height="23" Margin="136,135,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <ComboBox 
             ItemsSource="{Binding EmployeeTypes}"
             SelectedItem="{Binding CurrentEmployeeType, Mode=TwoWay}"
             IsSynchronizedWithCurrentItem="True"
             SelectedIndex="0" 
-            HorizontalAlignment="Left" Margin="116,226,0,0" VerticalAlignment="Top" Width="120"/>
+            HorizontalAlignment="Left" Margin="136,176,0,0" VerticalAlignment="Top" Width="120"/>
         <Button 
             Command="{Binding Add}"
-            Content="Opret" HorizontalAlignment="Left" Margin="161,273,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Status" HorizontalAlignment="Left" Margin="31,330,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.456,0.401"/>
+            Content="Opret" HorizontalAlignment="Left" Margin="188,292,0,0" VerticalAlignment="Top" Width="68"/>
+        <Label Content="Status" HorizontalAlignment="Left" Margin="31,320,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.456,0.401"/>
         <Label Content="{Binding Status}"
                Visibility="{Binding StatusVisibility}"
-               HorizontalAlignment="Left" Margin="116,330,0,0" VerticalAlignment="Top"/>
+               HorizontalAlignment="Left" Margin="123,320,0,0" VerticalAlignment="Top"/>
+        <Label Content="Timer/måned" HorizontalAlignment="Left" Margin="31,212,0,0" VerticalAlignment="Top"/>
+        <TextBox 
+            Text="{Binding MonthlyHours, Mode=TwoWay}" 
+            Height="23" Margin="136,215,536,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Løn/måned" HorizontalAlignment="Left" Margin="31,252,0,0" VerticalAlignment="Top"/>
+        <TextBox 
+            Text="{Binding MonthlySalary, Mode=TwoWay}" 
+            HorizontalAlignment="Left" Height="23" Margin="136,255,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Button 
+            Command="{Binding Update}"
+            Content="Opdater" HorizontalAlignment="Left" Margin="104,292,0,0" VerticalAlignment="Top" Width="65"/>
+        <Button 
+            Command="{Binding Delete}"
+            Content="Slet" HorizontalAlignment="Left" Margin="31,292,0,0" VerticalAlignment="Top" Width="57"/>
 
 
 

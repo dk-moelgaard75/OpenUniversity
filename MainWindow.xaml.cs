@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OpenUniversity.Views;
+using OpenUniversity.ViewModels;
 
 namespace OpenUniversity
 {
@@ -24,24 +25,46 @@ namespace OpenUniversity
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
-
+        #region buttons
         private void BtnOpenEpmloyeeView(object sender, RoutedEventArgs e)
         {
             EmployeeView view = new EmployeeView();
+            view.Closing += EmployeeView_Closing;
             view.ShowDialog();
         }
 
         private void BtnOpenStudentView(object sender, RoutedEventArgs e)
         {
             StudentView view = new StudentView();
+            view.Closing += StudentView_Closing;
             view.ShowDialog();
         }
-
         private void BtnOpenCourseView(object sender, RoutedEventArgs e)
         {
             CourseView view = new CourseView();
             view.ShowDialog();
         }
+        #endregion
+        #region events
+        private void StudentView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ViewClosing();
+        }
+        private void EmployeeView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ViewClosing();
+        }
+        #endregion
+
+        #region private methods
+        private void ViewClosing()
+        {
+            MainWindowViewModel tmpView = (MainWindowViewModel)this.DataContext;
+            tmpView.SignalChanges();
+
+        }
+        #endregion
     }
 }

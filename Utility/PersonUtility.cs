@@ -23,5 +23,41 @@ namespace OpenUniversity
                 return _employeeTypes;
             }
         }
+        
+        public static int GetMonthlyHours(string employeeType)
+        {
+            int monthlyHours = 37; //default secretary hours
+
+            switch (employeeType)
+            {
+                case "Sekretær":
+                    break;
+                case "Pedel":
+                    monthlyHours = 32;
+                    break;
+                case "Direktør":
+                    monthlyHours = 50;
+                    break;
+            }
+            return monthlyHours;
+        }
+        public static int GetMonthlySalery(string employeeType)
+        {
+            int monthlyHours = 30000; //default secretary salary
+
+            switch (employeeType)
+            {
+                case "Sekretær":
+                    break;
+                case "Pedel":
+                    monthlyHours = 25000;
+                    break;
+                case "Direktør":
+                    monthlyHours = 50000;
+                    break;
+            }
+            return monthlyHours;
+        }
+
     }
 }

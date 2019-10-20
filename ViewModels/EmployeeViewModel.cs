@@ -19,12 +19,13 @@ namespace OpenUniversity.ViewModels
         private string _firstName;
         private string _lastName;
         private int _age;
+        private int _montlyHours;
+        private int _montlySalary;
         private string _currentEmployeeType;
         private string _status = "N/A";
         private Visibility _statusVisibility;
         private ObservableCollection<EmployeeModel> _employees;
         private EmployeeModel _currentEmployee;
-        private BaseRepository<PersonModel> baseRepositoryPerson;
         private BaseRepository<EmployeeModel> baseRepositoryEmploye;
         #endregion
 
@@ -56,6 +57,25 @@ namespace OpenUniversity.ViewModels
                 RaisePropertyChanged("Age");
             }
         }
+        public int MonthlyHours
+        {
+            get { return _montlyHours; }
+            set
+            {
+                _montlyHours = value;
+                RaisePropertyChanged("MonthlyHours");
+            }
+        }
+        public int MonthlySalary
+        {
+            get { return _montlySalary; }
+            set
+            {
+                _montlySalary = value;
+                RaisePropertyChanged("MonthlySalary");
+            }
+        }
+
         public string Status
         {
             get { return _status; }
@@ -87,12 +107,17 @@ namespace OpenUniversity.ViewModels
             set
             {
                 _currentEmployee = value;
-                FirstName = _currentEmployee.FirstName;
-                LastName = _currentEmployee.LastName;
-                Age = _currentEmployee.Age;
-                CurrentEmployeeType = _currentEmployee.Type;
-                Status = "Eksisterende ansat valgt";
-                StatusVisibility = Visibility.Visible;
+                if (_currentEmployee != null)
+                {
+                    FirstName = _currentEmployee.FirstName;
+                    LastName = _currentEmployee.LastName;
+                    Age = _currentEmployee.Age;
+                    MonthlyHours = _currentEmployee.MonthlyHours;
+                    MonthlySalary = _currentEmployee.MonthlySalary;
+                    CurrentEmployeeType = _currentEmployee.Type;
+                    Status = "Eksisterende ansat valgt";
+                    StatusVisibility = Visibility.Visible;
+                }
                 RaisePropertyChanged("CurrentEmployee");
             }
         }
@@ -113,18 +138,84 @@ namespace OpenUniversity.ViewModels
             set
             {
                 _currentEmployeeType = value;
-                RaisePropertyChanged("CurrentEmployeeType");
+                HandleEmployeType();
             }
        }
 
         #endregion
-
+        private void HandleEmployeType()
+        {
+            MonthlyHours = PersonUtility.GetMonthlyHours(_currentEmployeeType);
+            MonthlySalary = PersonUtility.GetMonthlySalery(_currentEmployeeType);
+            RaisePropertyChanged("CurrentEmployeeType");
+        }
         internal void HandleKeyDown(KeyEventArgs e)
         {
             Status = "";
             StatusVisibility = Visibility.Hidden;
         }
+        #region CommandDelete
+        public ICommand Delete
+        {
+            get
+            {
+                return new CommandHandler(DeleteEmployee);
+            }
+        }
+        public void DeleteEmployee()
+        {
+            if (_currentEmployee == null)
+            {
+                Status = "Ingen medarbejder valgt";
+                StatusVisibility = Visibility.Visible;
+            }
+            else
+            {
+                //delete current employee - from collection and DB
+                var found = Employees.FirstOrDefault(x => x.Id == _currentEmployee.Id);
+                Employees.Remove(found);
+                baseRepositoryEmploye.Delete(_currentEmployee.Id);
+            }
+        }
+        #endregion
 
+        #region CommandUpdate
+        public ICommand Update
+        {
+            get
+            {
+                return new CommandHandler(UpdateEmployee);
+            }
+        }
+        public void UpdateEmployee()
+        {
+            if (_currentEmployee == null)
+            {
+                Status = "Ingen medarbejder valgt";
+                StatusVisibility = Visibility.Visible;
+            }
+            else
+            {
+                //Update current employee
+                _currentEmployee.FirstName = FirstName;
+                _currentEmployee.LastName = LastName;
+                _currentEmployee.Age = Age;
+                _currentEmployee.MonthlyHours = MonthlyHours;
+                _currentEmployee.MonthlySalary = MonthlySalary;
+                _currentEmployee.Type = CurrentEmployeeType;
+                Status = "Medarbejder opdateret";
+                StatusVisibility = Visibility.Visible;
+                baseRepositoryEmploye.Update(_currentEmployee);
+                var found = Employees.FirstOrDefault(x => x.Id == _currentEmployee.Id);
+                int i = Employees.IndexOf(found);
+                Employees[i] = _currentEmployee;
+                RaisePropertyChanged("Employees");
+                
+
+            }
+        }
+        #endregion
+        #region CommandAdd
         public ICommand Add
         {
             get
@@ -139,8 +230,8 @@ namespace OpenUniversity.ViewModels
             employee.FirstName = FirstName;
             employee.LastName = LastName;
             employee.Age = Age;
-            employee.MonthlyHours = 0;
-            employee.MonthlySalary = 0;
+            employee.MonthlyHours = MonthlyHours;
+            employee.MonthlySalary = MonthlySalary;
             employee.Type = CurrentEmployeeType;
             Status = "Medarbejder oprettet";
             StatusVisibility = Visibility.Visible;
@@ -151,17 +242,21 @@ namespace OpenUniversity.ViewModels
             //serialize to XML
             //https://stackoverflow.com/questions/11710770/saving-dynamically-created-objects-in-wpf
         }
+
+        #endregion
+
         public EmployeeViewModel()
         {
             //Initially hides status label
             StatusVisibility = Visibility.Hidden;
             //Setting default epmloyee type
             CurrentEmployeeType = "Sekretær";
+            MonthlyHours = 37;
+            MonthlySalary = 30000;
             baseRepositoryEmploye = new BaseRepository<EmployeeModel>();
             //Initalizes employees
             _employees = new ObservableCollection<EmployeeModel>();
-            IEnumerable<EmployeeModel> list = baseRepositoryEmploye.GetAll();
-            foreach(EmployeeModel model in list)
+            foreach(EmployeeModel model in baseRepositoryEmploye.GetAll())
             {
                 _employees.Add(model);
             }
