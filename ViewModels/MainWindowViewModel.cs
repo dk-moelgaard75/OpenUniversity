@@ -39,7 +39,7 @@ namespace OpenUniversity.ViewModels
                 return Employees.Count;
             }
         }
-        public void SignalChanges()
+        public void UpdateCollections()
         {
             ResetCollections();
             RaisePropertyChanged("NrOfEmployees");
@@ -55,7 +55,7 @@ namespace OpenUniversity.ViewModels
         public MainWindowViewModel()
         {
             baseRepositoryEmploye = new BaseRepository<EmployeeModel>();
-            SignalChanges();
+            UpdateCollections();
         }
     }
 

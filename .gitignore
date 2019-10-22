@@ -82,3 +82,5 @@ packages/EntityFramework.6.3.0/tools/netcoreapp3.0/any/ef6.pdb
 packages/EntityFramework.6.3.0/tools/netcoreapp3.0/any/ef6.runtimeconfig.json
 obj/Debug/OpenUniversity_MarkupCompile.i.lref
 .vs/OpenUniversity/v15/.suo
+obj/Debug/GeneratedInternalTypeHelper.g.cs
+obj/Debug/GeneratedInternalTypeHelper.g.i.cs

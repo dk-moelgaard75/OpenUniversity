@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenUniversity"
+        xmlns:localmodels="clr-namespace:OpenUniversity.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="550  " Width="800">
     <Grid Margin="0,0,0,-5">
@@ -15,7 +16,33 @@
                HorizontalAlignment="Left" Margin="100,22,0,0" VerticalAlignment="Top"/>
         <Label Content="Studerende" HorizontalAlignment="Left" Margin="29,175,0,0" VerticalAlignment="Top"/>
         <Label Content="Kurser" HorizontalAlignment="Left" Margin="29,328,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.513,0.249"/>
-        <TreeView HorizontalAlignment="Left" Height="105" Margin="29,53,0,0" VerticalAlignment="Top" Width="240"/>
+
+        <TreeView 
+            ItemsSource="{Binding Employees}"
+            HorizontalAlignment="Left" Height="105" Margin="29,53,0,0" VerticalAlignment="Top" Width="240">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Employees}">
+                    <TreeViewItem Header="{Binding FullName}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <!-- 
+        <TreeView ItemsSource="{Binding Employees}" HorizontalAlignment="Left" Height="105" Margin="29,53,0,0" VerticalAlignment="Top" Width="240">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type localmodels:EmployeeModel}" ItemsSource="{Binding Employees}">
+                    <TextBlock Text="{Binding FullName}" />
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate DataType="{x:Type localmodels:EmployeeModel}">
+                            <TextBlock Text="{Binding MonthlyHours}" />
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        -->
+
+
         <Button Content="Tilføj/Ret" Margin="286,138,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.557,0.424" HorizontalAlignment="Left" Width="75" Grid.ColumnSpan="2" Click="BtnOpenEpmloyeeView"/>
         <TreeView HorizontalAlignment="Left" Height="105" Margin="29,206,0,0" VerticalAlignment="Top" Width="240"/>
         <Button Content="Tilføj/Ret" HorizontalAlignment="Left" Margin="286,291,0,0" VerticalAlignment="Top" Width="75" Click="BtnOpenStudentView"/>

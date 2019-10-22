@@ -210,8 +210,6 @@ namespace OpenUniversity.ViewModels
                 int i = Employees.IndexOf(found);
                 Employees[i] = _currentEmployee;
                 RaisePropertyChanged("Employees");
-                
-
             }
         }
         #endregion
@@ -251,8 +249,8 @@ namespace OpenUniversity.ViewModels
             StatusVisibility = Visibility.Hidden;
             //Setting default epmloyee type
             CurrentEmployeeType = "Sekretær";
-            MonthlyHours = 37;
-            MonthlySalary = 30000;
+            MonthlyHours = PersonUtility.GetMonthlyHours(CurrentEmployeeType);
+            MonthlySalary = PersonUtility.GetMonthlySalery(CurrentEmployeeType);
             baseRepositoryEmploye = new BaseRepository<EmployeeModel>();
             //Initalizes employees
             _employees = new ObservableCollection<EmployeeModel>();

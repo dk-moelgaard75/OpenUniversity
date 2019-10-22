@@ -61,8 +61,11 @@ namespace OpenUniversity
         #region private methods
         private void ViewClosing()
         {
+            /*
             MainWindowViewModel tmpView = (MainWindowViewModel)this.DataContext;
             tmpView.SignalChanges();
+            */
+            ((MainWindowViewModel)this.DataContext).UpdateCollections();
 
         }
         #endregion
