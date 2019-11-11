@@ -26,7 +26,6 @@
                         <TreeViewItem Header="{Binding MonthlySalary}" />
                         <TreeViewItem Header="{Binding MonthlyHours}" />
                     </TreeViewItem>
-
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
