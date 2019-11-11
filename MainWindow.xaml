@@ -23,8 +23,8 @@
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Employees}">
                     <TreeViewItem Header="{Binding FullName}">
-                        <TreeViewItem Header="{Binding MonthlySalary}"> kr</TreeViewItem>
-                        <TreeViewItem Header="{Binding MonthlyHours}"> timer</TreeViewItem>
+                        <TreeViewItem Header="{Binding MonthlySalaryText}" />
+                        <TreeViewItem Header="{Binding MonthlyHoursText}" /> 
                     </TreeViewItem>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>

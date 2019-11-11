@@ -14,6 +14,20 @@ namespace OpenUniversity.Models
 
         public int MonthlySalary { get; set; }
         public int MonthlyHours { get; set; }
+        public string MonthlySalaryText 
+        { 
+            get
+            {
+                return MonthlySalary.ToString() + " kr";
+            }
+        }
+        public string MonthlyHoursText
+        { 
+            get
+            {
+                return MonthlyHours.ToString() + " timer";
+            }
+        }
 
     }
 }
