@@ -22,7 +22,11 @@
             HorizontalAlignment="Left" Height="105" Margin="29,53,0,0" VerticalAlignment="Top" Width="240">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Employees}">
-                    <TreeViewItem Header="{Binding FullName}" />
+                    <TreeViewItem Header="{Binding FullName}">
+                        <TreeViewItem Header="{Binding MonthlySalary}" />
+                        <TreeViewItem Header="{Binding MonthlyHours}" />
+                    </TreeViewItem>
+
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>

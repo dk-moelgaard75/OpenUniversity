@@ -12,11 +12,25 @@ namespace OpenUniversity.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        private string _name;
-        private string _teacher;
         private Guid _courseID;
+        public Guid CourseID
+        {
+            get
+            {
+                if (_courseID == null || _courseID == Guid.Empty)
+                {
+                    _courseID = Guid.NewGuid();
+                }
+                return _courseID;
+            }
+            set { _courseID = value; }
+        }
         public string Name { get; set; }
-        public string Teacher { get; set; }
+        public EmployeeModel Teacher { get; set; }
+
+        public int Price { get; set; }
+
+        public int MaxNrOfStudents { get; set; }
 
     }
 }

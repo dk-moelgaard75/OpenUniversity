@@ -10,7 +10,8 @@ namespace OpenUniversity.Models
     class StudentModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int StudentId { get; set; }
+        public List<CourseModel> Courses { get; set; }
 
     }
 }

@@ -7,16 +7,16 @@ using System.Linq.Expressions;
 
 namespace OpenUniversity.Repository
 {
-    class BaseRepository<T> : IBaseRepository<T> where T : class
+    class DatabaseRepository<T> : IBaseRepository<T> where T : class
     {
         private OpenUniversityDbContext _context = null;
         private DbSet<T> table = null;
-        public BaseRepository()
+        public DatabaseRepository()
         {
             this._context = new OpenUniversityDbContext();
             table = _context.Set<T>();
         }
-        public BaseRepository(OpenUniversityDbContext _context)
+        public DatabaseRepository(OpenUniversityDbContext _context)
         {
             this._context = _context;
             table = _context.Set<T>();
