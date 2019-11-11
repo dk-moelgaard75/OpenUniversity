@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,10 +70,11 @@
     <Compile Include="Data\OpenUniversityDbContext.cs" />
     <Compile Include="Data\OpenUniversityDbInitializer.cs" />
     <Compile Include="Models\CourseModel.cs" />
-    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\DatabaseRepository.cs" />
+    <Compile Include="Repository\FileRepository.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
-    <Compile Include="Repository\IEmployeeRepository.cs" />
     <Compile Include="Utility\PersonUtility.cs" />
+    <Compile Include="Utility\RepositoryFactory.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

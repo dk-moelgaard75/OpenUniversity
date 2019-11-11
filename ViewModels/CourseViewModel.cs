@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using OpenUniversity.Repository;
-
+using OpenUniversity.Utility;
+using OpenUniversity.Models;
 
 namespace OpenUniversity.ViewModels
 {
@@ -19,7 +20,7 @@ namespace OpenUniversity.ViewModels
         private string _teacher;
         private string _status = "N/A";
         private Visibility _statusVisibility;
-        private BaseRepository<CourseViewModel> baseRepository;
+        private IBaseRepository<CourseModel> baseRepository;
         #endregion
         #region Properties
         public string CourseName
@@ -100,8 +101,9 @@ namespace OpenUniversity.ViewModels
         public CourseViewModel()
         {
             StatusVisibility = Visibility.Hidden;
-            baseRepository = new BaseRepository<CourseViewModel>();
-
+            //baseRepository = new DatabaseRepository<CourseViewModel>();
+            baseRepository = RepositoryFactory.GetRepository<CourseModel>();
+            
         }
     }
 }

@@ -30,7 +30,6 @@ namespace OpenUniversity.Models
                 return _guid;
             }
             set { _guid = value; }
-
         }
         public string FullName
         {

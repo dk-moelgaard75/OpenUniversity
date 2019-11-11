@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OpenUniversity.Repository
 {
-    interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll();
         TEntity GetById(object id);

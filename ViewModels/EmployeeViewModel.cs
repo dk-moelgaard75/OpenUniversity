@@ -9,7 +9,7 @@ using System.Windows.Input;
 using OpenUniversity.Commands;
 using OpenUniversity.Models;
 using OpenUniversity.Repository;
-
+using OpenUniversity.Utility;
 
 namespace OpenUniversity.ViewModels
 {
@@ -26,7 +26,8 @@ namespace OpenUniversity.ViewModels
         private Visibility _statusVisibility;
         private ObservableCollection<EmployeeModel> _employees;
         private EmployeeModel _currentEmployee;
-        private BaseRepository<EmployeeModel> baseRepositoryEmploye;
+        //private DatabaseRepository<EmployeeModel> baseRepositoryEmploye;
+        private IBaseRepository<EmployeeModel> baseRepositoryEmploye;
         #endregion
 
         #region Properties
@@ -251,7 +252,8 @@ namespace OpenUniversity.ViewModels
             CurrentEmployeeType = "Sekretær";
             MonthlyHours = PersonUtility.GetMonthlyHours(CurrentEmployeeType);
             MonthlySalary = PersonUtility.GetMonthlySalery(CurrentEmployeeType);
-            baseRepositoryEmploye = new BaseRepository<EmployeeModel>();
+            //baseRepositoryEmploye = new DatabaseRepository<EmployeeModel>();
+            baseRepositoryEmploye = RepositoryFactory.GetRepository<EmployeeModel>();
             //Initalizes employees
             _employees = new ObservableCollection<EmployeeModel>();
             foreach(EmployeeModel model in baseRepositoryEmploye.GetAll())
