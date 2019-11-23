@@ -17,6 +17,7 @@ namespace OpenUniversity.ViewModels
         private ObservableCollection<StudentModel> _students = new ObservableCollection<StudentModel>();
         private ObservableCollection<CourseModel> _courses = new ObservableCollection<CourseModel>();
         private IBaseRepository<EmployeeModel> baseRepositoryEmploye;
+        private IBaseRepository<StudentModel> baseRepositoryStudent;
         public ObservableCollection<EmployeeModel> Employees
         {
             get { return _employees; }
@@ -35,15 +36,17 @@ namespace OpenUniversity.ViewModels
 
         public int NrOfEmployees
         {
-            get 
-            { 
-                return Employees.Count;
-            }
+            get { return Employees.Count; }
+        }
+        public int NrOfStudents
+        {
+            get { return Students.Count; }
         }
         public void UpdateCollections()
         {
             ResetCollections();
             RaisePropertyChanged("NrOfEmployees");
+            RaisePropertyChanged("NrOfStudents");
         }
         private void ResetCollections()
         {
@@ -52,11 +55,19 @@ namespace OpenUniversity.ViewModels
             {
                 _employees.Add(model);
             }
+            _students.Clear();
+            foreach (StudentModel model in baseRepositoryStudent.GetAll())
+            {
+                _students.Add(model);
+            }
+
+
         }
         public MainWindowViewModel()
         {
             //baseRepositoryEmploye = new DatabaseRepository<EmployeeModel>();
             baseRepositoryEmploye = RepositoryFactory.GetRepository<EmployeeModel>();
+            baseRepositoryStudent = RepositoryFactory.GetRepository<StudentModel>();
             UpdateCollections();
         }
     }

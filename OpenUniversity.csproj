@@ -67,6 +67,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandHandler.cs" />
+    <Compile Include="CustomExceptions\InvalidSocialSecurityNumberException.cs" />
+    <Compile Include="CustomExceptions\SocialSecurityNumberIsUse.cs" />
     <Compile Include="Data\OpenUniversityDbContext.cs" />
     <Compile Include="Data\OpenUniversityDbInitializer.cs" />
     <Compile Include="Models\CourseModel.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\CourseView.xaml.cs">
       <DependentUpon>CourseView.xaml</DependentUpon>

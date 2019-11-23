@@ -18,7 +18,7 @@ namespace OpenUniversity.ViewModels
         #region private fields
         private string _firstName;
         private string _lastName;
-        private int _age;
+        private int? _age;
         private int _montlyHours;
         private int _montlySalary;
         private string _currentEmployeeType;
@@ -26,7 +26,6 @@ namespace OpenUniversity.ViewModels
         private Visibility _statusVisibility;
         private ObservableCollection<EmployeeModel> _employees;
         private EmployeeModel _currentEmployee;
-        //private DatabaseRepository<EmployeeModel> baseRepositoryEmploye;
         private IBaseRepository<EmployeeModel> baseRepositoryEmploye;
         #endregion
 
@@ -49,7 +48,7 @@ namespace OpenUniversity.ViewModels
                 RaisePropertyChanged("LastName");
             }
         }
-        public int Age
+        public int? Age
         {
             get { return _age; }
             set

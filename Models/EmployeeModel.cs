@@ -14,6 +14,7 @@ namespace OpenUniversity.Models
 
         public int MonthlySalary { get; set; }
         public int MonthlyHours { get; set; }
+        public string Type { get; set; }
         public string MonthlySalaryText 
         { 
             get
