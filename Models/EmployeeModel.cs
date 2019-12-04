@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OpenUniversity.Models
 {
-    class EmployeeModel : PersonModel
+    public class EmployeeModel : PersonModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmployeeId { get; set; }

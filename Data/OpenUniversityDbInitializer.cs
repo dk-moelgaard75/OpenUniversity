@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace OpenUniversity.Data
 {
-    class OpenUniversityDbInitializer : DropCreateDatabaseIfModelChanges<OpenUniversityDbContext>
+    public class OpenUniversityDbInitializer : DropCreateDatabaseIfModelChanges<OpenUniversityDbContext>
     {
         protected override void Seed(OpenUniversityDbContext context)
         {

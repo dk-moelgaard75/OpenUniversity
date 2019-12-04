@@ -21,6 +21,12 @@ namespace OpenUniversity.Repository
             this._context = _context;
             table = _context.Set<T>();
         }
+        
+        public OpenUniversityDbContext Context
+        {
+            get { return _context; }
+        }
+        
         public IEnumerable<T> GetAll()
         {
             return table.ToList();

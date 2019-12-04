@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenUniversity.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,6 +10,7 @@ namespace OpenUniversity.Repository
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
+        OpenUniversityDbContext Context { get; }
         IEnumerable<TEntity> GetAll();
         TEntity GetById(object id);
         void Insert(TEntity obj);

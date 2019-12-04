@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OpenUniversity.Models
 {
-    class StudentModel : PersonModel
+    public class StudentModel : PersonModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudentId { get; set; }
@@ -18,6 +18,7 @@ namespace OpenUniversity.Models
         public string Hometown { get; set; }
         public string Phonenumber { get; set; }
         public string SocialSecurityNumber { get; set; }
+        public virtual ICollection<CourseModel> Courses { get; set; }
 
         private StudentModel()
         {
@@ -26,6 +27,7 @@ namespace OpenUniversity.Models
         }
         public StudentModel(string socialSecurityNumber)
         {
+            this.Courses = new HashSet<CourseModel>();
             //do a modulus 11 control (https://cpr.dk/cpr-systemet/personnumre-uden-kontrolciffer-modulus-11-kontrol/) 
             //certan numbers may not pass
             if (!DoModulus11Validation(socialSecurityNumber))

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OpenUniversity.Models
 {
-    class CourseModel
+    public class CourseModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -26,11 +26,20 @@ namespace OpenUniversity.Models
             set { _courseID = value; }
         }
         public string Name { get; set; }
+        
+        
+        public int TeacherId { get; set; }
         public EmployeeModel Teacher { get; set; }
 
-        public int Price { get; set; }
+        public int? Price { get; set; }
 
         public int MaxNrOfStudents { get; set; }
+
+        public virtual ICollection<StudentModel> AttendingStudents { get; set; }
+        public CourseModel()
+        {
+            this.AttendingStudents = new HashSet<StudentModel>();
+        }
 
     }
 }

@@ -7,23 +7,56 @@
         mc:Ignorable="d"
         Title="Opret kursus" Height="450" Width="800">
     <Grid>
-
-        <Label Content="Kursusnavn" HorizontalAlignment="Left" Margin="37,89,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="121,92,0,0" TextWrapping="Wrap" Text="Indtast navn" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Underviser" Grid.Column="0" HorizontalAlignment="Left" Margin="37,134,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="121,138,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Kursus ID" HorizontalAlignment="Left" Margin="37,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.323,0.514"/>
+        <Label Content="Kursus" HorizontalAlignment="Left" Margin="37,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.323,0.514"/>
+        <ComboBox 
+                ItemsSource="{Binding Courses}"
+                DisplayMemberPath="Name"
+                SelectedValuePath="CoursesDbId"
+                SelectedItem="{Binding CurrentCourse}"
+                IsSynchronizedWithCurrentItem="True"
+            HorizontalAlignment="Left" Margin="121,52,0,0" VerticalAlignment="Top" Width="120"/>
+        
+        <Label Content="Kursus ID" HorizontalAlignment="Left" Margin="37,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.323,0.514"/>
         <TextBox 
             Text="{Binding CourseID}"
-            HorizontalAlignment="Left" Height="23" Margin="121,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" IsReadOnly="True" Background="#FFF9F9F9"/>
+            HorizontalAlignment="Left" Height="23" Margin="121,92,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" IsReadOnly="True" Background="#FFF9F9F9"/>
+
+        <Label Content="Kursusnavn" HorizontalAlignment="Left" Margin="37,129,0,0" VerticalAlignment="Top"/>
+        <TextBox 
+            Text="{Binding CourseName}"
+            HorizontalAlignment="Left" Height="23" Margin="121,132,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        
+        <Label Content="Underviser" Grid.Column="0" HorizontalAlignment="Left" Margin="37,174,0,0" VerticalAlignment="Top"/>
+        <ComboBox 
+            ItemsSource="{Binding Teachers}"
+            SelectedItem="{Binding CurrentTeacher, Mode=TwoWay}"
+            DisplayMemberPath="FullName"
+            SelectedValuePath="PersonId"
+            IsSynchronizedWithCurrentItem="True"
+            HorizontalAlignment="Left" Margin="121,178,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="Pris" HorizontalAlignment="Left" Margin="37,229,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.46,1.82"/>
+        <TextBox 
+            Text="{Binding CoursePrice}"
+            HorizontalAlignment="Left" Height="23" Margin="121,229,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Button 
                 Command="{Binding Add}"
                 Content="Opret" 
-                HorizontalAlignment="Left" Margin="166,185,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.175,0.568"/>
-        <Label Content="Status" HorizontalAlignment="Left" Margin="37,238,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.26,-0.692"/>
+                HorizontalAlignment="Left" Margin="186,322,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.175,0.568"/>
+        <Button 
+            Command="{Binding Update}"
+            Content="Opdater" HorizontalAlignment="Left" Margin="104,322,0,0" VerticalAlignment="Top" Width="65"/>
+        <Button 
+            Command="{Binding Delete}"
+            Content="Slet" HorizontalAlignment="Left" Margin="31,322,0,0" VerticalAlignment="Top" Width="57"/>
+
+
+        <Label Content="Status" HorizontalAlignment="Left" Margin="37,353,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.26,-0.692"/>
         <Label Content="{Binding Status}"
                Visibility="{Binding StatusVisibility}"
-               HorizontalAlignment="Left" Margin="121,238,0,0" VerticalAlignment="Top"/>
+               HorizontalAlignment="Left" Margin="121,353,0,0" VerticalAlignment="Top"/>
+        
+
 
     </Grid>
 </Window>

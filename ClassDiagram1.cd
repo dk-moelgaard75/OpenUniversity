@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OpenUniversity.Models.CourseModel">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAQAAAAAAAAAAAAQAQBAgAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CourseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenUniversity.Models.EmployeeModel">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <InheritanceLine Type="OpenUniversity.Models.PersonModel" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="3.017" />
+        <Point X="7" Y="3.375" />
+        <Point X="7.625" Y="3.375" />
+        <Point X="7.625" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAEAAAAAAQAAAQICAAA=</HashCode>
+      <FileName>Models\EmployeeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenUniversity.Models.PersonModel">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAEAAAAAAAIAAAMAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\PersonModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenUniversity.Models.StudentModel">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAACAAACDAAACABACAAA=</HashCode>
+      <FileName>Models\StudentModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenUniversity.Utility.RepositoryFactory">
+    <Position X="11" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utility\RepositoryFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpenUniversity.Repository.DatabaseRepository&lt;T&gt;">
+    <Position X="10" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAMAAAgAABABAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\DatabaseRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpenUniversity.Repository.FileRepository&lt;T&gt;">
+    <Position X="12" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAMAAAgAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\FileRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="OpenUniversity.Repository.IBaseRepository&lt;TEntity&gt;">
+    <Position X="11" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAMAAAgAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Repository\IBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

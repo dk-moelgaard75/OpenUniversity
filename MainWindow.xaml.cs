@@ -44,7 +44,23 @@ namespace OpenUniversity
         private void BtnOpenCourseView(object sender, RoutedEventArgs e)
         {
             CourseView view = new CourseView();
+            view.Closing += CourseView_Closing;
             view.ShowDialog();
+        }
+        private void BtnAddStudentToCourse(object sender, RoutedEventArgs e)
+        {
+            AddStudentToCourseView view = new AddStudentToCourseView();
+            view.Closing += AddStudentToCourseView_Closing;
+        }
+
+        private void AddStudentToCourseView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ViewClosing();
+        }
+
+        private void CourseView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ViewClosing();
         }
         #endregion
         #region events

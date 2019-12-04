@@ -173,8 +173,10 @@ namespace OpenUniversity.ViewModels
             {
                 //delete current employee - from collection and DB
                 var found = Employees.FirstOrDefault(x => x.Id == _currentEmployee.Id);
-                Employees.Remove(found);
+                //due to _currentEmployee beeing updated when a element is removed from the employees list, remove from DB first
                 baseRepositoryEmploye.Delete(_currentEmployee.Id);
+                Employees.Remove(found);
+                
             }
         }
         #endregion

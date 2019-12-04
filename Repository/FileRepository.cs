@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenUniversity.Data;
 
 namespace OpenUniversity.Repository
 {
     class FileRepository<T> : IBaseRepository<T> where T : class
     {
+        public OpenUniversityDbContext Context => throw new NotImplementedException();
+
         public void Delete(object id)
         {
             throw new NotImplementedException();

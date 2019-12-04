@@ -77,11 +77,15 @@
     <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Utility\PersonUtility.cs" />
     <Compile Include="Utility\RepositoryFactory.cs" />
+    <Compile Include="ViewModels\AddStudentToCourseViewModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AddStudentToCourseView.xaml.cs">
+      <DependentUpon>AddStudentToCourseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CourseView.xaml.cs">
       <DependentUpon>CourseView.xaml</DependentUpon>
     </Compile>
@@ -103,6 +107,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddStudentToCourseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CourseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +145,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

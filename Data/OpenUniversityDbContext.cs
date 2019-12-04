@@ -8,7 +8,7 @@ using OpenUniversity.Models;
 
 namespace OpenUniversity.Data
 {
-    class OpenUniversityDbContext : DbContext
+    public class OpenUniversityDbContext : DbContext
     {
         //DB setup due to inheritance: https://weblogs.asp.net/manavi/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-2-table-per-type-tpt
         //General setup for MVVM projects (https://stackoverflow.com/questions/22514584/in-which-class-should-i-load-my-data-when-using-mvvm)
@@ -34,10 +34,11 @@ namespace OpenUniversity.Data
             modelBuilder.Entity<CourseModel>().ToTable("Courses");
 
         }
-        public DbSet<CourseModel> Courses { get; set; }
+        
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<PersonModel> Persons { get; set; }
         public DbSet<StudentModel> Students { get; set; }
-        
+        public DbSet<CourseModel> Courses { get; set; }
+
     }
 }

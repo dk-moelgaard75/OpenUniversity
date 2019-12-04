@@ -181,6 +181,7 @@ namespace OpenUniversity.ViewModels
         }
         public void AddStudent()
         {
+            bool storeUser = true;
             Status = "Opretter student";
             //check if the socialsecuritynumber is in use
             //first reload students
@@ -192,37 +193,38 @@ namespace OpenUniversity.ViewModels
                 {
                     Status = "Brugeren findes allerede";
                     StatusVisibility = Visibility.Visible;
-                    return;
+                    storeUser = false;
                 }
             }
-            try
+            if (storeUser)
             {
-                StudentModel student = new StudentModel(SocialSecurityNumber);
-                student.SocialSecurityNumber = SocialSecurityNumber;
-                student.FirstName = FirstName;
-                student.LastName = LastName;
-                student.Age = Age;
-                student.Address = Address;
-                student.ZipCode = ZipCode;
-                student.Hometown = HomeTown;
-                student.Phonenumber = PhoneNumber;
-                baseRepositoryStudent.Insert(student);
-                Students.Add(student);
-                Status = "Student oprettet";
-            }
-            catch (InvalidSocialSecurityNumberException exInvalid)
-            {
-                Status = exInvalid.Message;
-                StatusVisibility = Visibility.Visible;
-                RaisePropertyChanged("StatusVisibility");
+                try
+                {
+                    StudentModel student = new StudentModel(SocialSecurityNumber);
+                    student.SocialSecurityNumber = SocialSecurityNumber;
+                    student.FirstName = FirstName;
+                    student.LastName = LastName;
+                    student.Age = Age;
+                    student.Address = Address;
+                    student.ZipCode = ZipCode;
+                    student.Hometown = HomeTown;
+                    student.Phonenumber = PhoneNumber;
+                    baseRepositoryStudent.Insert(student);
+                    Students.Add(student);
+                    Status = "Student oprettet";
+                }
+                catch (InvalidSocialSecurityNumberException exInvalid)
+                {
+                    Status = exInvalid.Message;
+                    StatusVisibility = Visibility.Visible;
+                    RaisePropertyChanged("StatusVisibility");
+                }
             }
             if (ClearOnCRUD)
             {
                 ClearFields();
             }
             RaisePropertyChanged("Students");
-
-
         }
         public void UpdateStudent()
         {

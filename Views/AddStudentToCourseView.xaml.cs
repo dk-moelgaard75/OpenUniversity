@@ -1,5 +1,4 @@
-﻿using OpenUniversity.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,17 +15,13 @@ using System.Windows.Shapes;
 namespace OpenUniversity.Views
 {
     /// <summary>
-    /// Interaction logic for CourseView.xaml
+    /// Interaction logic for AddStudentToCourseView.xaml
     /// </summary>
-    public partial class CourseView : Window
+    public partial class AddStudentToCourseView : Window
     {
-        //Checkbox ex: https://www.codeproject.com/Tips/1210187/A-WPF-CheckBox-ListBox
-        public CourseView()
+        public AddStudentToCourseView()
         {
             InitializeComponent();
-            DataContext = new CourseViewModel();
         }
-
-      
     }
 }
