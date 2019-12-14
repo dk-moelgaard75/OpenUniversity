@@ -7,16 +7,36 @@
         mc:Ignorable="d"
         Title="AddStudentToCourseView" Height="450" Width="800">
     <Grid>
+        <Label Content="Vælg kursus" HorizontalAlignment="Left" Margin="121,89,0,0" VerticalAlignment="Top"/>
+        <ComboBox 
+            ItemsSource="{Binding Courses}"
+            SelectedItem="{Binding CurrentCourse, Mode=TwoWay}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"
+            HorizontalAlignment="Left" Margin="121,129,0,0" VerticalAlignment="Top" Width="120"/>
+        
+        <Label Content="Vælg studerende" HorizontalAlignment="Left" Margin="121,154,0,0" VerticalAlignment="Top"/>
         <ListBox 
             ItemsSource="{Binding Students}"
             HorizontalAlignment="Left" Height="92" Margin="121,189,0,0" VerticalAlignment="Top" Width="120">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <CheckBox Content="{Binding FullName}" 
-                      IsChecked="{Binding StudentAttending, Mode=TwoWay}"/>
+                      IsChecked="{Binding AttendingCourse, Mode=TwoWay}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button 
+            Command="{Binding Update}"
+            Content="Opdater" HorizontalAlignment="Left" Margin="165,299,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Status" HorizontalAlignment="Left" Margin="88,338,0,0" VerticalAlignment="Top"/>
+        <Label 
+            Content="{Binding Status}"
+            Visibility="{Binding StatusVisibility}"
+               
+               HorizontalAlignment="Left" Margin="165,338,0,0" VerticalAlignment="Top"/>
+
+
 
     </Grid>
 </Window>

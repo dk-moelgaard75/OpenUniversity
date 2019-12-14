@@ -25,6 +25,7 @@ namespace OpenUniversity.Data
             
             //Database.SetInitializer<OpenUniversityDbContext>(new OpenUniversityDbInitializer());
             Database.SetInitializer(new OpenUniversityDbInitializer());
+            Configuration.LazyLoadingEnabled = true;
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

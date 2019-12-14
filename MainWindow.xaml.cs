@@ -51,6 +51,7 @@ namespace OpenUniversity
         {
             AddStudentToCourseView view = new AddStudentToCourseView();
             view.Closing += AddStudentToCourseView_Closing;
+            view.ShowDialog();
         }
 
         private void AddStudentToCourseView_Closing(object sender, System.ComponentModel.CancelEventArgs e)

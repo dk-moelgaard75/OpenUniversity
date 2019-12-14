@@ -38,7 +38,7 @@ namespace OpenUniversity.Models
         public virtual ICollection<StudentModel> AttendingStudents { get; set; }
         public CourseModel()
         {
-            this.AttendingStudents = new HashSet<StudentModel>();
+            AttendingStudents = new HashSet<StudentModel>();
         }
 
     }
