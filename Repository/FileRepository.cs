@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenUniversity.Data;
+using OpenUniversity.Models;
+using OpenUniversity.Utility;
 
 namespace OpenUniversity.Repository
 {
     class FileRepository<T> : IBaseRepository<T> where T : class
     {
-        public OpenUniversityDbContext Context => throw new NotImplementedException();
 
         public void Delete(object id)
         {
@@ -18,17 +19,34 @@ namespace OpenUniversity.Repository
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return BinaryFileUtil.ReadFromFile<T>().AsEnumerable<T>();
         }
 
         public T GetById(object id)
         {
-            throw new NotImplementedException();
+            if (typeof(T).Equals(typeof(StudentModel)))
+            {
+                List<StudentModel> list = BinaryFileUtil.ReadFromFile<StudentModel>();
+                return list.Find(x => x.Id == (int)id) as T;
+            }
+            else if(typeof(T).Equals(typeof(CourseModel)))
+            {
+                List<CourseModel> list = BinaryFileUtil.ReadFromFile<CourseModel>();
+                return list.Find(x => x.Id == (int)id) as T;
+            }
+            else if (typeof(T).Equals(typeof(EmployeeModel)))
+            {
+                List<CourseModel> list = BinaryFileUtil.ReadFromFile<CourseModel>();
+                return list.Find(x => x.Id == (int)id) as T;
+            }
+            T obj = default(T);
+            obj = Activator.CreateInstance<T>();
+            return obj;
         }
 
         public void Insert(T obj)
         {
-            throw new NotImplementedException();
+            BinaryFileUtil.WriteToFile<T>(obj);
         }
 
         public void Save()
@@ -38,7 +56,12 @@ namespace OpenUniversity.Repository
 
         public void Update(T obj)
         {
-            throw new NotImplementedException();
+            Insert(obj);
         }
+        public void HandleLink(T obj, object reference, bool add)
+        {
+
+        }
+
     }
 }

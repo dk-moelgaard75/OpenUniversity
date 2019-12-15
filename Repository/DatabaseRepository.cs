@@ -14,19 +14,15 @@ namespace OpenUniversity.Repository
         private DbSet<T> table = null;
         public DatabaseRepository()
         {
-            this._context = new OpenUniversityDbContext();
+            _context = new OpenUniversityDbContext();
             table = _context.Set<T>();
         }
-        public DatabaseRepository(OpenUniversityDbContext _context)
+        public DatabaseRepository(OpenUniversityDbContext context)
         {
-            this._context = _context;
+            _context = context;
             table = _context.Set<T>();
         }
         
-        public OpenUniversityDbContext Context
-        {
-            get { return _context; }
-        }
         
         public IEnumerable<T> GetAll()
         {
@@ -83,6 +79,26 @@ namespace OpenUniversity.Repository
         public void Save()
         {
             _context.SaveChanges();
+        }
+        public void HandleLink(T obj, object reference, bool add)
+        {
+            if (typeof(T).Equals(typeof(CourseModel)) && reference is StudentModel)
+            {
+                //CourseModel currentCourse = (CourseModel)Convert.ChangeType(obj, typeof(CourseModel));
+                CourseModel currentCourse = obj as CourseModel;
+                StudentModel tmpStudent = (StudentModel)reference;
+                CourseModel courseToAdd = _context.Courses.FirstOrDefault(z => z.Id == currentCourse.Id);
+                StudentModel dbStudent = _context.Students.FirstOrDefault(x => x.Id == tmpStudent.Id);
+                if (add)
+                {
+                    courseToAdd.AttendingStudents.Add(dbStudent);
+                }
+                else
+                {
+                    courseToAdd.AttendingStudents.Remove(dbStudent);
+                }
+                _context.SaveChanges();
+            }
         }
     }
 }

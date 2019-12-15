@@ -75,6 +75,7 @@
     <Compile Include="Repository\DatabaseRepository.cs" />
     <Compile Include="Repository\FileRepository.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
+    <Compile Include="Utility\BinaryFileUtil.cs" />
     <Compile Include="Utility\PersonUtility.cs" />
     <Compile Include="Utility\RepositoryFactory.cs" />
     <Compile Include="ViewModels\AddStudentToCourseViewModel.cs" />

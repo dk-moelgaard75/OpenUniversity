@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OpenUniversity.Models
 {
+    [Serializable()]
     public class EmployeeModel : PersonModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -103,7 +103,8 @@ namespace OpenUniversity.ViewModels
         }
         private void HandleAttendingStudents()
         {
-            foreach(StudentModel student in Students)
+            ReloadStudents();
+            foreach (StudentModel student in Students)
             {
                 if (student.Courses.FirstOrDefault(x => x.Id == CurrentCourse.Id) != null)
                 {
@@ -124,21 +125,28 @@ namespace OpenUniversity.ViewModels
             int nrOfStudentRemoved = 0;
             if (CurrentCourse != null)
             {
-                OpenUniversityDbContext context = baseRepositoryCourses.Context;
-                CourseModel courseToAdd = context.Courses.FirstOrDefault(z => z.Id == CurrentCourse.Id); 
+
+
+                //OpenUniversityDbContext context = baseRepositoryCourses.Context;
+                //CourseModel courseToAdd = context.Courses.FirstOrDefault(z => z.Id == CurrentCourse.Id); 
+                
+                
                 foreach (StudentModel student in Students)
                 {
-                    StudentModel dbStudent = context.Students.FirstOrDefault(x => x.Id == student.Id);
+                    //StudentModel dbStudent = context.Students.FirstOrDefault(x => x.Id == student.Id);
                     if (student.AttendingCourse)
                     {
-                        courseToAdd.AttendingStudents.Add(dbStudent);
-                        context.SaveChanges();
+                        baseRepositoryCourses.HandleLink(CurrentCourse, student,true);
+                        
+                        //courseToAdd.AttendingStudents.Add(dbStudent);
+                        //context.SaveChanges();
                         nrOfStudentAdded++;
                     }
                     else
                     {
-                        courseToAdd.AttendingStudents.Remove(dbStudent);
-                        context.SaveChanges();
+                        baseRepositoryCourses.HandleLink(CurrentCourse, student, false);
+                        //courseToAdd.AttendingStudents.Remove(dbStudent);
+                        //context.SaveChanges();
                         nrOfStudentRemoved++;
                     }
                     

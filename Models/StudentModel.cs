@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace OpenUniversity.Models
 {
+    [Serializable()]
     public class StudentModel : PersonModel, INotifyPropertyChanged
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
