@@ -124,34 +124,21 @@ namespace OpenUniversity.ViewModels
             int nrOfStudentAdded = 0;
             int nrOfStudentRemoved = 0;
             if (CurrentCourse != null)
-            {
-
-
-                //OpenUniversityDbContext context = baseRepositoryCourses.Context;
-                //CourseModel courseToAdd = context.Courses.FirstOrDefault(z => z.Id == CurrentCourse.Id); 
-                
-                
+            {                
                 foreach (StudentModel student in Students)
                 {
-                    //StudentModel dbStudent = context.Students.FirstOrDefault(x => x.Id == student.Id);
                     if (student.AttendingCourse)
                     {
-                        baseRepositoryCourses.HandleLink(CurrentCourse, student,true);
-                        
-                        //courseToAdd.AttendingStudents.Add(dbStudent);
-                        //context.SaveChanges();
+                        baseRepositoryCourses.HandleLink(CurrentCourse, student,true);                        
                         nrOfStudentAdded++;
                     }
                     else
                     {
                         baseRepositoryCourses.HandleLink(CurrentCourse, student, false);
-                        //courseToAdd.AttendingStudents.Remove(dbStudent);
-                        //context.SaveChanges();
                         nrOfStudentRemoved++;
-                    }
-                    
-                    
+                    }                    
                 }
+                //string interpolation - new i C# 6 
                 Status = $"Antal studerende tilføjet/fjernet:{nrOfStudentAdded}/{nrOfStudentRemoved}";
                 StatusVisibility = Visibility.Visible;
 

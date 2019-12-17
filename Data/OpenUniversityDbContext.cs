@@ -22,8 +22,6 @@ namespace OpenUniversity.Data
 
         public OpenUniversityDbContext() : base("name=OpenUniversityDBEntities")
         {
-            
-            //Database.SetInitializer<OpenUniversityDbContext>(new OpenUniversityDbInitializer());
             Database.SetInitializer(new OpenUniversityDbInitializer());
             Configuration.LazyLoadingEnabled = true;
         }
@@ -33,7 +31,6 @@ namespace OpenUniversity.Data
             modelBuilder.Entity<EmployeeModel>().ToTable("Employees");
             modelBuilder.Entity<StudentModel>().ToTable("Students");
             modelBuilder.Entity<CourseModel>().ToTable("Courses");
-
         }
         
         public DbSet<EmployeeModel> Employees { get; set; }

@@ -14,7 +14,8 @@ namespace OpenUniversity.Repository
 
         public void Delete(object id)
         {
-            throw new NotImplementedException();
+            T obj = GetById(id);
+            BinaryFileUtil.RemoveFromFile(obj);
         }
 
         public IEnumerable<T> GetAll()
@@ -29,14 +30,14 @@ namespace OpenUniversity.Repository
                 List<StudentModel> list = BinaryFileUtil.ReadFromFile<StudentModel>();
                 return list.Find(x => x.Id == (int)id) as T;
             }
-            else if(typeof(T).Equals(typeof(CourseModel)))
+            else if (typeof(T).Equals(typeof(CourseModel)))
             {
                 List<CourseModel> list = BinaryFileUtil.ReadFromFile<CourseModel>();
                 return list.Find(x => x.Id == (int)id) as T;
             }
             else if (typeof(T).Equals(typeof(EmployeeModel)))
             {
-                List<CourseModel> list = BinaryFileUtil.ReadFromFile<CourseModel>();
+                List<EmployeeModel> list = BinaryFileUtil.ReadFromFile<EmployeeModel>();
                 return list.Find(x => x.Id == (int)id) as T;
             }
             T obj = default(T);
@@ -56,12 +57,43 @@ namespace OpenUniversity.Repository
 
         public void Update(T obj)
         {
+            int id = -1;
+            if (typeof(T).Equals(typeof(StudentModel)))
+            {
+                StudentModel tmpObj = obj as StudentModel;
+                id = tmpObj.Id;
+            }
+            else if (typeof(T).Equals(typeof(CourseModel)))
+            {
+                CourseModel tmpObj = obj as CourseModel;
+                id = tmpObj.Id;
+            }
+            else if (typeof(T).Equals(typeof(EmployeeModel)))
+            {
+                EmployeeModel tmpObj = obj as EmployeeModel;
+                id = tmpObj.Id;
+            }
+            if (id > -1)
+            {
+                Delete(id);
+            }
             Insert(obj);
         }
         public void HandleLink(T obj, object reference, bool add)
         {
-
+            if (typeof(T).Equals(typeof(CourseModel)) && reference is StudentModel)
+            {
+                //CourseModel currentCourse = (CourseModel)Convert.ChangeType(obj, typeof(CourseModel));
+                CourseModel currentCourse = obj as CourseModel;
+                StudentModel tmpStudent = (StudentModel)reference;
+                currentCourse.AttendingStudents.Add(tmpStudent);
+                Update(currentCourse as T);
+                //Write to the studentfil as well
+                IBaseRepository<StudentModel> baseRepositoryStudent = RepositoryFactory.GetRepository<StudentModel>();
+                StudentModel student = baseRepositoryStudent.GetById(tmpStudent.Id);
+                student.Courses.Add(currentCourse);
+                baseRepositoryStudent.Update(student);
+            }
         }
-
     }
 }

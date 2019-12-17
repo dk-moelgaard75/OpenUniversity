@@ -108,7 +108,6 @@ namespace OpenUniversity
                 //there is no need for a TryParse here
                 int val = int.Parse(number[i].ToString());
                 int multiplier = int.Parse(factor[i].ToString());
-                //tempsum = tempsum + tegn * Mult
                 tmpSum = tmpSum + val * multiplier;
             }
             double finalCheck = 11 - tmpSum % 11;

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="OpenUniversity.Models.CourseModel">
-    <Position X="2.25" Y="3.5" Width="1.5" />
+    <Position X="7.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAECAAAAAQAAAAAAAAAAAAQAQBAgAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAECAAAAAQAAAAAAAAAACAQAQBAgAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Models\CourseModel.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -30,11 +30,12 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OpenUniversity.Models.StudentModel">
-    <Position X="4.75" Y="3.5" Width="1.5" />
+    <Position X="4.75" Y="4" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAACAAACDAAACABACAAA=</HashCode>
+      <HashCode>AAAABAACAAAAAAAAAAAAQAAAgACAAACDAAACABACAAA=</HashCode>
       <FileName>Models\StudentModel.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="OpenUniversity.Utility.RepositoryFactory">
     <Position X="11" Y="1" Width="2.5" />
@@ -46,7 +47,7 @@
   <Class Name="OpenUniversity.Repository.DatabaseRepository&lt;T&gt;">
     <Position X="10" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAMAAAgAABABAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <HashCode>AAQAAMAAAAAABABAAAAAAAAAAAEAAAAAAiAAAAAAAIA=</HashCode>
       <FileName>Repository\DatabaseRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -54,15 +55,22 @@
   <Class Name="OpenUniversity.Repository.FileRepository&lt;T&gt;">
     <Position X="12" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAMAAAgAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <HashCode>AAQAAMAAAAAAAAAAAAAAAAAAAAEAAAAAAiAAAAAAAIA=</HashCode>
       <FileName>Repository\FileRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="OpenUniversity.PersonUtility">
+    <Position X="1.5" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAEAAAIAAAAAAAAAQAAAAACEAAAAAEAA=</HashCode>
+      <FileName>Utility\PersonUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="OpenUniversity.Repository.IBaseRepository&lt;TEntity&gt;">
     <Position X="11" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAMAAAgAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <HashCode>AAQAAMAAAAAAAAAAAAAAAAAAAAEAAAAAAiAAAAAAAIA=</HashCode>
       <FileName>Repository\IBaseRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>

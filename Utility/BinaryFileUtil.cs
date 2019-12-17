@@ -81,9 +81,53 @@ namespace OpenUniversity.Utility
         public static void RemoveFromFile<T>(T objectToRemove) where T : class
         {
             string filePath = GetFilePath<T>();
-            List<T> list = ReadFromFile<T>();
-            list.Remove(objectToRemove);
-            
+            List<T> list = new List<T>();
+            if (typeof(T).Equals(typeof(StudentModel)))
+            {
+                List<StudentModel> tmpList = ReadFromFile<StudentModel>();
+                StudentModel tmpObj = objectToRemove as StudentModel;
+                for (int i=0; i< tmpList.Count; i++)
+                {
+                    if (tmpList[i].Id == tmpObj.Id)
+                    {
+                        tmpList.RemoveAt(i);
+                        break;
+                    }
+                }
+                list = tmpList as List<T>;
+            }
+            else if (typeof(T).Equals(typeof(CourseModel)))
+            {
+                List<CourseModel> tmpList = ReadFromFile<CourseModel>();
+                CourseModel tmpObj = objectToRemove as CourseModel;
+                for (int i = 0; i < tmpList.Count; i++)
+                {
+                    if (tmpList[i].Id == tmpObj.Id)
+                    {
+                        tmpList.RemoveAt(i);
+                        break;
+                    }
+                }
+                list = tmpList as List<T>;
+
+            }
+            else if (typeof(T).Equals(typeof(EmployeeModel)))
+            {
+                List<EmployeeModel> tmpList = ReadFromFile<EmployeeModel>();
+                EmployeeModel tmpObj = objectToRemove as EmployeeModel;
+                for (int i = 0; i < tmpList.Count; i++)
+                {
+                    if (tmpList[i].Id == tmpObj.Id)
+                    {
+                        tmpList.RemoveAt(i);
+                        break;
+                    }
+                }
+                list = tmpList as List<T>;
+            }
+
+
+
             try
             {
                 if (File.Exists(filePath))

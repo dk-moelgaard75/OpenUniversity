@@ -181,10 +181,14 @@ namespace OpenUniversity.ViewModels
             }
             else
             {
-                //delete current employee - from collection and DB
+                //delete current course - from collection and DB
                 var found = Courses.FirstOrDefault(x => x.Id == _currentCourse.Id);
-                Courses.Remove(found);
+                //remeber to delete from repository first. Once the item is removed from the ObservableCollection
+                //the _currentCourse is updated and set to null
                 baseRepositoryCourses.Delete(_currentCourse.Id);
+                
+                Courses.Remove(found);
+                
             }
 
         }
